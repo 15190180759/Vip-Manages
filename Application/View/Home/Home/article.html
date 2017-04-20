@@ -1,0 +1,27 @@
+
+	<div id="body">
+		<div class="blog">
+			<div class="content">
+				<h3>活动详情:<br/><br/><?php echo $title ;?></h3>
+				<p>
+					<?php echo htmlspecialchars_decode($content);?>
+				</p>
+				<p>
+					活动时间：<?php echo $start;?>到<?php echo $end;?>
+				</p>
+			</div>
+			<div class="sidebar">
+				<h3>活动列表</h3>
+				<ul>
+					<?php foreach($list as $row):?>
+					<li>
+						<span><a href="index.php?p=Home&c=Home&a=article&id=<?php echo $row['article_id'];?>"><?php echo $row['title'];?></a></span><br/>
+						<p>
+							<?php echo htmlspecialchars_decode($row['content']);?>
+						</p>
+					</li>
+					<?php endForeach;?>
+				</ul>
+			</div>
+		</div>
+	</div>

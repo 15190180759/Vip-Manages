@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>管理中心 - 部门列表 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./Public/Admin/Css/general.css" rel="stylesheet" type="text/css" />
+<link href="./Public/Admin/Css/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="index.php?p=Admin&c=Group&a=add">添加部门</a></span>
+    <span class="action-span1"><a href="index.php?p=Admin&c=Group&a=index">葬爱美发-管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 部门列表 </span>
+    <div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm" onsubmit="">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>部门ID</th>
+                <th>部门名称</th>
+                <th>操作</th>
+                <!--<th><?php var_dump($list);?></th>-->
+            </tr>
+            <?php foreach($list as $group):?>
+            <tr>
+                <td align="center"><?php echo $group['group_id'];?></td>
+                <td align="center" class="first-cell"><span><?php echo $group['name'];?></span></td>
+                <td align="center">
+                    <a href="index.php?p=Admin&c=Group&a=edit&id=<?php echo $group['group_id'];?>" title="编辑"><img src="./Public/Admin/Images/icon_edit.gif" width="16" height="16" border="0" /></a>
+                    &emsp;&emsp;
+                    <a href="index.php?p=Admin&c=Group&a=del&group_id=<?php echo $group['group_id'];?>" onclick="" title="删除"><img src="./Public/Admin/Images/icon_trash.gif" width="16" height="16" border="0" /></a></td>
+            </tr>
+            <?php endForeach;?>
+        </table>
+        <?php echo $pageResult;?>
+    </div>
+</form>
+</body>
+</html>
