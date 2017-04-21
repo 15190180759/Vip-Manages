@@ -8,6 +8,8 @@ class IndexController extends PlatformController
         $this->display('index');
     }
     public function top(){
+        @session_start();
+        $this->assign($_SESSION['user']);
         $this->display('top');
     }
     public function menu(){

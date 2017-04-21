@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>葬爱美发管理员添加</title>
+<title>葬爱美发员工添加</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="./public/Admin/css/general.css" rel="stylesheet" type="text/css" />
 <link href="./public/Admin/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>
-    <span class="action-span"><a href="index.php?p=Admin&c=Members&a=index">管理员列表</a>
+    <span class="action-span"><a href="index.php?p=Admin&c=Members&a=index">员工列表</a>
     </span>
     <span class="action-span1"><a href="index.php?p=Admin&c=index&a=index">葬爱美发 管理中心</a></span>
-    <span id="search_id" class="action-span1"> - 添加管理员 </span>
+    <span id="search_id" class="action-span1"> - 添加员工 </span>
     <div style="clear:both"></div>
 </h1>
 
@@ -25,18 +25,18 @@
         <form enctype="multipart/form-data" action="index.php?p=Admin&c=Members&a=add" method="post">
             <table width="90%" id="general-table" align="center">
                 <tr>
-                    <td class="label">管理员头像：</td>
+                    <td class="label">员工头像：</td>
                     <td>
                         <input type="file" name="photo" size="35" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">管理员姓名：</td>
+                    <td class="label">员工姓名：</td>
                     <td><input type="text" name="username" size="30" />
                     <span class="require-field">*</span></td>
                 </tr>
                 <tr>
-                    <td class="label">管理员密码： </td>
+                    <td class="label">员工密码： </td>
                     <td>
                         <input type="password" name="password" value="" size="20"/>
                         <span id="goods_sn_notice"></span><br />

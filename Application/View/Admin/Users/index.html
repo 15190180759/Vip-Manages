@@ -1,29 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>葬爱 管理中心 - 员工列表 </title>
+    <title>葬爱 管理中心 - 会员列表 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="./public/Admin/css/general.css" rel="stylesheet" type="text/css" />
     <link href="./public/Admin/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>
-    <span class="action-span"><a href="index.php?p=Admin&c=Members&a=add">添加员工</a></span>
+    <span class="action-span"><a href="index.php?p=Admin&c=Users&a=add">添加会员</a></span>
     <span class="action-span1"><a href="index.php?p=Admin&c=index&a=index">葬爱 管理中心</a></span>
-    <span id="search_id" class="action-span1"> - 员工列表 </span>
+    <span id="search_id" class="action-span1"> - 会员列表 </span>
     <div style="clear:both"></div>
 </h1>
 <div class="form-div">
-    <form action="index.php?p=Admin&c=Members&a=index" method="post">
+    <form action="index.php?p=Admin&c=Users&a=index" method="post">
         <img src="./public/Admin/images/icon_search.gif" width="26" height="22" border="0" alt="search" />
-        <!-- 分类 -->
-        <select name="group_id">
-            <option value="">所有部门</option>
-            <?php foreach($groups as $group):?>
-            <option value="<?php echo $group['group_id']?><?php echo
-           $group['group_id']==$search['group_id']?'selected':'';?>"><?php echo $group['name']?></option>
-            <?php endForeach;?>
-        </select>
         <!-- 关键字 -->
         关键字 <input type="text" name="keyword" size="15" value="<?php echo isset($search['keyword'])?$search['keyword']:'';?>"/>
         <input type="submit" value=" 搜索 " class="button" />
@@ -35,17 +27,19 @@
     <div class="list-div" id="listDiv">
         <table cellpadding="3" cellspacing="1">
             <tr>
-                <th>员工头像</th>
-                <th>员工姓名</th>
-                <th>员工密码</th>
+                <th>会员头像</th>
+                <th>会员账号</th>
+                <th>会员密码</th>
                 <th>真实姓名</th>
                 <th>性别</th>
                 <th>电话号码</th>
-                <th>所在部门</th>
-                <th>是否是管理员</th>
+                <th>会员等级</th>
+                <th>会员余额</th>
+                <th>会员积分</th>
+                <th>备注</th>
                 <th>操作</th>
             </tr>
-            <?php foreach($list as $row):?>
+            <?php foreach($rows as $row):?>
             <tr>
                 <td align="center"><span><img src="./Uploads/<?php echo $row['photo']?>"/></span></td>
                 <td align="center" class="first-cell"><span><?php echo $row['username']?></span></td>
@@ -53,12 +47,14 @@
                 <td align="center"><span><?php echo $row['realname']?></span></td>
                 <td align="center"><span><?php echo $row['sex']? '男':'女';?></span></td>
                 <td align="center"><span><?php echo $row['telephone']?></span></td>
-                <td align="center"><span><?php echo $row['name'];?></span></td>
-                <td align="center"><img src="./Public/Admin/images/<?php echo $row['is_admin']?'yes':'no';?>.gif"/></td>
+                <td align="center"><span><?php echo $row['vip_level'];?></span></td>
+                <td align="center"><span><?php echo $row['money'];?></span></td>
+                <td align="center"><span><?php echo $row['score'];?></span></td>
+                <td align="center"><span><?php echo $row['remark'];?></span></td>
                 <td align="center">
-                    <a href="index.php?p=Admin&c=Members&a=edit&id=<?php echo $row['member_id']?>" title="编辑">
+                    <a href="index.php?p=Admin&c=Users&a=edit&id=<?php echo $row['user_id']?>" title="编辑">
                         <img src="./public/Admin/images/icon_edit.gif" width="16" height="16" border="0" /></a>
-                    <a href="index.php?p=Admin&c=Members&a=delete&id=<?php echo $row['member_id']?>" title="删除">
+                    <a href="index.php?p=Admin&c=Users&a=delete&id=<?php echo $row['user_id']?>" title="删除">
                         <img src="./public/Admin/images/icon_trash.gif" width="16" height="16" border="0" /></a></td>
             </tr>
             <?php endforeach;?>

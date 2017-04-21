@@ -33,7 +33,7 @@ class MembersModel extends Model{
         //var_dump($username,$password);exit;
         $password = md5($password);
         //查询匹配成功的一行数据
-        $condition = "username = '$username' and password = '$password'";
+        $condition = "username = '$username' and password = '$password' and is_admin=1";
         $row =parent::getRow($condition);
         //var_dump($row);exit;
         if(empty($row)){
@@ -58,6 +58,7 @@ class MembersModel extends Model{
     public function add($data){
 
         $time = time();
+        $data['password'] = md5($data['password']);
         $sql = "insert into members(photo,username,password,realname,sex,telephone,group_id,is_admin,last_login)
         values('{$data['thumb_logo']}','{$data['username']}','{$data['password']}','{$data['realname']}','{$data['sex']}','{$data['telephone']}',
         '{$data['group_id']}','{$data['is_admin']}','$time')";

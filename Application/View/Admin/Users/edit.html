@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>葬爱美发员工修改</title>
+<title>葬爱美发会员修改</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="./public/Admin/css/general.css" rel="stylesheet" type="text/css" />
 <link href="./public/Admin/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>
-    <span class="action-span"><a href="index.php?p=Admin&c=Members&a=index">员工列表</a>
+    <span class="action-span"><a href="index.php?p=Admin&c=Users&a=index">会员列表</a>
     </span>
     <span class="action-span1"><a href="index.php?p=Admin&c=index&a=index">葬爱美发 管理中心</a></span>
-    <span id="search_id" class="action-span1"> - 修改员工 </span>
+    <span id="search_id" class="action-span1"> - 修改会员 </span>
     <div style="clear:both"></div>
 </h1>
 
@@ -22,25 +22,25 @@
         </p>
     </div>
     <div id="tabbody-div">
-        <form enctype="multipart/form-data" action="index.php?p=Admin&c=Members&a=edit" method="post">
-            <input type="hidden" name="id" value="<?php echo $member_id;?>"/>
+        <form enctype="multipart/form-data" action="index.php?p=Admin&c=Users&a=edit" method="post">
+            <input type="hidden" name="id" value="<?php echo $user_id?>"/>
             <table width="90%" id="general-table" align="center">
                 <tr>
-                    <td class="label">管理员头像：</td>
+                    <td class="label">会员头像：</td>
                     <td>
                         <img src="./Uploads/<?php echo $photo;?>" width="50px" height="50px"/><br/>
-                        <input type="file" name="photo" size="35" value="<?php echo $photo;?>"/>
+                        <input type="file" name="photo" size="35" value="<?php echo $photo?>"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">管理员姓名：</td>
-                    <td><input type="text" name="username" size="30" value="<?php echo $username;?>"/>
+                    <td class="label">会员姓名：</td>
+                    <td><input type="text" name="username" size="30" value="<?php echo $username?>"/>
                     <span class="require-field">*</span></td>
                 </tr>
                 <tr>
-                    <td class="label">管理员密码： </td>
+                    <td class="label">会员密码： </td>
                     <td>
-                        <input type="password" name="password" value="<?php echo $password;?>"/>
+                        <input type="password" name="password" value="<?php echo $password?>" size="20"/>
                         <span id="goods_sn_notice"></span><br />
                         <span class="notice-span"id="noticeGoodsSN">为了你的账号安全 密码安全系数要高</span>
                     </td>
@@ -48,41 +48,50 @@
                 <tr>
                     <td class="label">真实姓名：</td>
                     <td>
-                        <input type="text" name="realname" value="<?php echo $realname;?>" size="20"/>
+                        <input type="text" name="realname" size="20" value="<?php echo $realname?>"/>
                         <span class="require-field">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">性别：</td>
                     <td>
-                        <input type="radio" name="sex" value="1" <?php if($sex == 1){echo "checked=checked";}?>/> 男
-                        <input type="radio" name="sex" value="0" <?php if($sex == 0){echo "checked=checked";}?>/> 女
+                        <input type="radio" name="sex" value="1" <?php echo $sex==1?'checked':'';?>/> 男
+                        <input type="radio" name="sex" value="0" <?php echo $sex==0?'checked':'';?>/> 女
                     </td>
                 </tr>
                 <tr>
                     <td class="label">电话号码：</td>
                     <td>
-                        <input type="text" name="telephone" size="20" value="<?php echo $telephone;?>"/>
+                        <input type="text" name="telephone" size="20" value="<?php echo $telephone?>"/>
                         <span class="require-field">*</span>
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">所在部门：</td>
+                    <td class="label">会员等级：</td>
                     <td>
-                        <select name="group_id">
-                            <option value="">所有部门</option>
-                           <?php foreach($groups as $group):?>
-                            <option value="<?php echo $group_id?>" <?php echo $group_id == $group['group_id'] ? 'selected' : '';?>><?php echo $group['name'];?></option>
-                          <?php endForeach;?>
-                        </select>
+                        <input type="text" name="vip_level" size="20" value="<?php echo $vip_level?>"/>
                         <span class="require-field">*</span>
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">是否是管理员：</td>
+                    <td class="label">会员余额：</td>
                     <td>
-                        <input type="radio" name="is_admin" value="1" <?php if($is_admin == 1){echo "checked=checked";}?>/> 是
-                        <input type="radio" name="is_admin" value="0" <?php if($is_admin == 0){echo "checked=checked";}?>/> 否
+                        <input type="text" name="money" size="20" value="<?php echo $money?>"/>
+                        <span class="require-field">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">会员积分：</td>
+                    <td>
+                        <input type="text" name="score" size="20" value="<?php echo $score?>"/>
+                        <span class="require-field">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">备注：</td>
+                    <td>
+                        <input type="text" name="remark" size="20" value="<?php echo $remark?>"/>
+                        <span class="require-field">*</span>
                     </td>
                 </tr>
 

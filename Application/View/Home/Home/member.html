@@ -1,20 +1,29 @@
 
 	<div id="body">
-		<h3>about us</h3>
-		<b>We Have Free Templates for Everyone</b>
+		<img src="./Uploads/<?php echo $photo;?>">
+		<h1>亲爱的 <font color="red"><?php echo $username ;?></font> 欢迎来到会员中心~~~</h1>
 		<p>
-			Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they’re absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.cssmoban.com/about/terms/member.html">Terms of Use</a>. You can even remove all our links if you want to.
+			您的会员账户当前余额为：<?php echo $money;?><br/><br/>
+			<?php echo $is_vip ? "您目前为<strong>VIP{$vip_level}</strong>用户":'你还不是VIP哦,赶紧联系店员加入享受更多优惠吧!'?><br/><br/>
+			您的可用积分：<?php echo $score;?> &nbsp; (<a href="#"><font color="blue">进入积分商城兑换礼物</font></a>)
 		</p>
-		<b>We Have More Templates for You</b>
 		<p>
-			Looking for more templates? Just browse through all our <a href="http://www.cssmoban.com/">Free Website Templates</a> and find what you’re looking for. But if you don’t find any website template you can use, you can try our <a href="http://www.cssmoban.com/freewebdesign/">Free Web Design</a> service and tell us all about it. Maybe you’re looking for something different, something special. And we love the challenge of doing something different and something special.
-		</p>
-		<b>Be Part of Our Community</b>
-		<p>
-			If you’re experiencing issues and concerns about this website template, join the discussion on <a href="http://www.cssmoban.com/forums/">on our forum</a> and meet other people in the community who share the same interests with you.
-		</p>
-		<b>Template details</b>
-		<p>
-			Design version 13<br>Code version 6<br>Website Template details, discussion and updates for this <a href="http://www.cssmoban.com/discuss/hairstylesalon/">Zizurz Website Template</a>. Website Template design by <a href="http://www.cssmoban.com/">Free Website Templates</a>. Please feel free to remove some or all the text and links of this page and replace it with your own About content.
+			<h3><em>为了更好的服务会员,本店重磅推出预约美发服务,填写下面表单即可完成预约服务!!</em></h3>
+			<form action="index.php?p=Home&c=Order&a=add" method="post">
+				预约时间：<input type="date" name="date"> <font color="red">*</font><br/><br/><br/>
+				预约美发师： <select name="barber">
+				<option value="">请选择美发师</option>
+				<?php foreach($barber as $row):?>
+				<option value="<?php echo $row['username']?>"><?php echo $row['username']?></option>
+				<?php endForeach;?>
+			</select>
+				<br/><br/><br/>
+				套餐选择：
+				<br/><br/><br/>
+				联系电话：<input type="text" name="phone"> <font color="red">*</font><br/><br/><br/>
+				姓 &nbsp;名：<input type="text" name="realname"> <font color="red">*</font><br/><br/><br/>
+				备注信息：<textarea name="content"></textarea> <br/><br/><small>(带*的为必填项)</small><br/><br/><br/>
+				<input type="submit" value="提交">&nbsp;&nbsp;&nbsp;<input type="reset" value="重置">
+			</form>
 		</p>
 	</div>

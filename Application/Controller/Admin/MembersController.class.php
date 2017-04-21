@@ -3,20 +3,25 @@
 class MembersController extends Controller{
     public function index(){
         $condition = [];
-        if(!empty($_POST['group_id'])){
+        $search=[];
+        $search['group_id']=0;
+        if(!empty($_REQUEST['group_id'])){
             $condition[] = "group_id = {$_POST['group_id']}";
+            $search['group_id']=$_REQUEST['group_id'];
         }
-        if(!empty($_POST['keyword'])){
-            $condition[] = "(realname like '%{$_POST['keyword']}%' or telephone like '%{$_POST['keyword']}%')";
+        $search['keyword']='';
+        if(!empty($_REQUEST['keyword'])){
+            $condition[] = "(realname like '%{$_REQUEST['keyword']}%' or telephone like '%{$_REQUEST['keyword']}%')";
         }
         //将数组转化成字符串
         $condition = implode(' and ',$condition);
         $MembersModel=new MembersModel();
-        $row=$MembersModel->getList();
+        $row=$MembersModel->getList($condition);
 
         $GroupModel=new GroupModel();
         $groups=$GroupModel->getAll();
 
+        $this->assign('search',$search);
         $this->assign('groups',$groups);
         $this->assign('list',$row);
         $this->display('index');
@@ -58,6 +63,7 @@ class MembersController extends Controller{
     public function edit(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $data=$_POST;
+//            var_dump($data);exit;
             $UploadTool=new UploadTool();
             $logoPath=$UploadTool->uploadOne($_FILES['photo'],'members/');
             if($logoPath === false){
@@ -72,13 +78,13 @@ class MembersController extends Controller{
                 }
             }
 
-            $MembersModel=new MembersModel();
+            $MembersModel=new UsersModel();
             $r=$MembersModel->update($data);
             if($r === false){
-                $this->redirect('index.php?p=Admin&c=Members&a=edit&id='.$data['id'],$MembersModel->getError(),2);
+                $this->redirect('index.php?p=Admin&c=MembersModel&a=edit&id='.$data['id'],$MembersModel->getError(),2);
             }
 
-            $this->redirect('index.php?p=Admin&c=Members&a=index');
+            $this->redirect('index.php?p=Admin&c=MembersModel&a=index');
         }else{
             $id=$_GET['id'];
             $MembersModel=new MembersModel();
@@ -93,5 +99,6 @@ class MembersController extends Controller{
         }
 
     }
+
 
 }

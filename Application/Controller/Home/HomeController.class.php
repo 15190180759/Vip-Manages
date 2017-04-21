@@ -15,9 +15,26 @@ class HomeController extends Controller
       }
 
     public function member(){
-        $this->display('top2');
-        $this->display('member');
-        $this->display('footer');
+        //判断会员是否登录
+        @session_start();
+        if(!isset($_SESSION['user_info'])){//没有session则载入登录视图
+            $this->display('top2');
+            $this->display('login');
+            $this->display('footer');
+        }
+        else {
+            //如果存在session，则进入会员中心
+            $users = $_SESSION['user_info'];
+            //查出所有美发师信息用于分配到会员中心
+            $membersModel = new MembersModel();
+            $barbers = $membersModel->getAll();
+            //分配所有信息
+            $this->assign('barber',$barbers);
+            $this->assign($users);
+            $this->display('top2');
+            $this->display('member');
+            $this->display('footer');
+        }
     }
     public function points(){
         $this->display('top2');
